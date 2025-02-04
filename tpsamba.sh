@@ -25,7 +25,6 @@ done
 
 mkdir /home/admin/rep_zeus
 mkdir /home/ciel1/rep_ava
-chmod /home/ciel1 -R 447
 mkdir /home/ciel1/rep_axel
 mkdir /home/ciel2/rep_barbara
 mkdir /home/ciel2/rep_bertrand
