@@ -55,7 +55,7 @@ user_home="/home/ciel1/rep_$user_name"
   else
     useradd -m -d "$user_home" -g ciel1 "$user_name" && echo "Romain le dieu a créé l'utilisateur '$user_name'."
     if [ -d "$user_home" ]; then
-      chown -R "$user_name":admin "$user_home"
+      chown -R "$user_name":ciel1 "$user_home"
       echo "Le dossier '$user_home' a été assigné à l'utilisateur '$user_name'."
     else
       echo "Erreur : le dossier '$user_home' n'existe pas."
@@ -70,7 +70,7 @@ user_home="/home/ciel1/rep_$user_name"
   else
     useradd -m -d "$user_home" -g ciel1 "$user_name" && echo "Romain le dieu a créé l'utilisateur '$user_name'."
     if [ -d "$user_home" ]; then
-      chown -R "$user_name":admin "$user_home"
+      chown -R "$user_name":ciel1 "$user_home"
       echo "Le dossier '$user_home' a été assigné à l'utilisateur '$user_name'."
     else
       echo "Erreur : le dossier '$user_home' n'existe pas."
@@ -85,7 +85,7 @@ user_home="/home/ciel2/rep_$user_name"
   else
     useradd -m -d "$user_home" -g ciel2 "$user_name" && echo "Romain le dieu a créé l'utilisateur '$user_name'."
     if [ -d "$user_home" ]; then
-      chown -R "$user_name":admin "$user_home"
+      chown -R "$user_name":ciel2 "$user_home"
       echo "Le dossier '$user_home' a été assigné à l'utilisateur '$user_name'."
     else
       echo "Erreur : le dossier '$user_home' n'existe pas."
@@ -100,7 +100,7 @@ user_home="/home/ciel2/rep_$user_name"
   else
     useradd -m -d "$user_home" -g ciel2 "$user_name" && echo "Romain le dieu a créé l'utilisateur '$user_name'."
     if [ -d "$user_home" ]; then
-      chown -R "$user_name":admin "$user_home"
+      chown -R "$user_name":ciel2 "$user_home"
       echo "Le dossier '$user_home' a été assigné à l'utilisateur '$user_name'."
     else
       echo "Erreur : le dossier '$user_home' n'existe pas."
@@ -115,7 +115,7 @@ user_home="/home/prof/rep_$user_name"
   else
     useradd -m -d "$user_home" -g prof -G ciel1,ciel2 "$user_name" && echo "Romain le dieu a créé l'utilisateur '$user_name'."
     if [ -d "$user_home" ]; then
-      chown -R "$user_name":admin "$user_home"
+      chown -R "$user_name":prof "$user_home"
       echo "Le dossier '$user_home' a été assigné à l'utilisateur '$user_name'."
     else
       echo "Erreur : le dossier '$user_home' n'existe pas."
@@ -130,7 +130,7 @@ user_home="/home/prof/rep_$user_name"
   else
     useradd -m -d "$user_home" -g prof -G ciel1,ciel2 "$user_name" && echo "Romain le dieu a créé l'utilisateur '$user_name'."
     if [ -d "$user_home" ]; then
-      chown -R "$user_name":admin "$user_home"
+      chown -R "$user_name":prof "$user_home"
       echo "Le dossier '$user_home' a été assigné à l'utilisateur '$user_name'."
     else
       echo "Erreur : le dossier '$user_home' n'existe pas."
