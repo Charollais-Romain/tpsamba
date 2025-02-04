@@ -23,7 +23,7 @@ for group in "${group_list[@]}"; do
   fi
 done
 
-mkdir /home/zeus/rep_zeus
+mkdir /home/admin/rep_zeus
 mkdir /home/ciel1/rep_ava
 chmod /home/ciel1 -R 447
 mkdir /home/ciel1/rep_axel
