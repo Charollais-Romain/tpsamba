@@ -1,0 +1,86 @@
+#CONTROLE 18/03/2025
+#!/bin/bash
+
+GROUPS=("admin" "prof" "ciel1" "ciel2")
+USERS=("zeus" "dartois" "dauriac" "barbara" "bertrand" "ava" "axel")
+SAMBAPASSWD=("zeus" "dartois" "dauriac" "barbara" "bertrand" "ava" "axel")
+DIRECTORIES=("ciel1" "ciel2" "prof" "admin" "public")
+BASE_DIR="/srv/samba"
+
+for group in "${GROUPS[@]}"; do
+    sudo groupadd $group
+done
+
+sudo useradd -m -G admin,ciel1,ciel2 zeus
+sudo useradd -m -G prof,ciel1,ciel2 dartois
+sudo useradd -m -G prof,ciel1,ciel2 dauriac
+
+#GROUPE de la 2eme section 
+sudo useradd -m -G ciel2 barbara
+sudo useradd -m -G ciel2 bertrand
+
+#GROUPe de la 1ère section
+sudo useradd -m -G ciel1 ava
+sudo useradd -m -G ciel1 axel
+
+for user in "${SAMBAPASSWD[@]}"; do
+    sudo smbpasswd -a $user
+done
+
+for dir in "${DIRECTORIES[@]}"; do
+    sudo mkdir -p $BASE_DIR/$dir
+done
+
+sudo chown :admin $BASE_DIR/admin
+sudo chmod 770 $BASE_DIR/admin
+
+sudo chown :prof $BASE_DIR/prof
+sudo chmod 770 $BASE_DIR/prof
+
+sudo chown :ciel1 $BASE_DIR/ciel1
+sudo chmod 770 $BASE_DIR/ciel1
+
+sudo chown :ciel2 $BASE_DIR/ciel2
+sudo chmod 770 $BASE_DIR/ciel2
+
+sudo chown :ciel1,ciel2,prof,admin $BASE_DIR/public
+sudo chmod 777 $BASE_DIR/public
+
+echo "
+[global]
+   workgroup = WORKGROUP
+   server string = Serveur Samba de CIEL
+   security = user
+   passdb backend = tdbsam
+   guest account = nobody
+
+[ciel1]
+   path = $BASE_DIR/ciel1
+   read only = no
+   valid users = @ciel1, @prof, @admin
+
+[ciel2]
+   path = $BASE_DIR/ciel2
+   read only = no
+   valid users = @ciel2, @prof, @admin
+
+[prof]
+   path = $BASE_DIR/prof
+   read only = no
+   valid users = @prof, @admin
+
+[admin]
+   path = $BASE_DIR/admin
+   read only = no
+   valid users = @admin
+
+[public]
+   path = $BASE_DIR/public
+   read only = no
+   valid users = @ciel1, @ciel2, @prof, @admin
+" | sudo tee /etc/samba/smb.conf > /dev/null
+
+sudo systemctl restart smbd
+testparm
+echo "Script terminé !"
+echo "Salut Romain du 18/03/2025 à 08h27 (oui je tente de preshot j'ai fini tout mon travail je m'amuse), remercie moi d'avoir pris le temps de faire ce script pour être plus efficace lors de l'exam ;)"
